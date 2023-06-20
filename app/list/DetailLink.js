@@ -1,4 +1,5 @@
-// use Client
+// 클라이언트로 사용한다? 인듯
+"use client";
 // 클라이언트에서 정의하고 서버에서 사용한다 하니까 useRouter() 오류남 나중에 해결 바람
 import { useRouter } from "next/navigation";
 

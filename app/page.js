@@ -9,6 +9,5 @@ export default async function Home() {
 
   // 그 DB의 Collection의 모든 내용을 배열로 가져옴
   let result = await db.collection("clname").find().toArray();
-  console.log(result);
   return <div>안녕</div>;
 }

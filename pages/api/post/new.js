@@ -9,7 +9,6 @@ export default async function handler(req, res) {
       return res.status(500).json("제목을 입력하세요");
     }
     try {
-      console.log(req.body);
       // clname에 req.body 추가
       let result = await db.collection("clname").insertOne(req.body);
       // 성공 시 list 페이지로 이동

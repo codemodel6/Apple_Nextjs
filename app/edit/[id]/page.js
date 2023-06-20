@@ -4,11 +4,9 @@ import { ObjectId } from "mongodb";
 export default async function Edit(props) {
   const client = await connectDB;
   const db = client.db("dbname");
-  console.log(props.params.id);
   let result = await db
     .collection("clname")
     .findOne({ _id: new ObjectId(props.params.id) });
-  console.log(result);
 
   return (
     <div className="p-20">
