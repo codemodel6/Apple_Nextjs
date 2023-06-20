@@ -1,6 +1,6 @@
 export default function Write() {
   return (
-    <div>
+    <div className="p-20">
       <h4>글 작성</h4>
       {/* action = 요청 보낼 주소 method = GET 혹은 POST */}
       <form action="/api/post/new" method="POST">
