@@ -40,3 +40,14 @@ await fetch('URL', {cache : 'force-cache'}) -> 근데 {cache : 'force-cache'} �
 
 fetch를 안하고 데이터베이스에서 데이터를 직접 가져올 경우의 캐싱
 export const revalidate = 60; -> 60초마다 캐싱 갱신
+
+# 로그인
+
+Next-auth 사용
+
+## github 연동
+
+1. 내 프로필 -> setting -> developer setting -> oauth app -> 만든 후 Generate a new client secret
+2. pages/api/auth 폴더 만든 후 [...nextauth].js 를 만든 후 지정된 코드를 넣는다
+3. 로그인 버튼을 만든다. next-auth/react 에서 import 후 onClick 시 signIn() 이라는 함수를 실행시키기만 하면 된다. signOut 은 로그아웃 버튼이다.
+4. 서버 컴포넌트에서 현재 로그인한 유저의 정보를 보려면 await getServerSession(authOptions) 함수를 사용한다 - authoOptions은 [...nextautho].js 파일 안에 있는 변수
