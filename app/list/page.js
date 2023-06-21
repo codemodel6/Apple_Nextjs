@@ -1,25 +1,20 @@
 import { connectDB } from "@/util/database";
-import Link from "next/link";
-import DetailLink from "./DetailLink";
+import ListItem from "./ListItem";
 
 export default async function List() {
   const client = await connectDB;
   const db = client.db("dbname");
   let result = await db.collection("clname").find().toArray();
 
-  console.log(result[0]._id);
+  // id값은 string값으로 보내야 하기 때문에 map으로 새롭게 만든다
+  result = result.map((it) => {
+    it._id = it._id.toString();
+    return it;
+  });
+
   return (
     <div className="list-bg">
-      {result.map((it, idx) => (
-        <div key={idx} className="list-item">
-          {/* prefetch 기능을 끈다 */}
-          <Link prefetch={false} href={`/detail/${it._id}`}>
-            <h4>{it.title}</h4>
-          </Link>
-          <Link href={`/edit/${it._id}`}>✏️</Link>
-          <p>1월 1일</p>
-        </div>
-      ))}
+      <ListItem result={result} />
     </div>
   );
 }
