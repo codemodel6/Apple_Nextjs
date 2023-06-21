@@ -14,7 +14,7 @@ export default async function Edit(props) {
       {/* action = 요청 보낼 주소 method = GET 혹은 POST */}
       <form action="/api/post/edit" method="POST">
         {/* Next.js에서는 value를 defaultValue라 써야 한다 */}
-        <input name="title" defaultValue={result.title} />
+        <input name="title" defaultValue={result.title ?? ""} />
         <input name="content" defaultValue={result.content} />
         <input
           style={{ display: "none" }}
