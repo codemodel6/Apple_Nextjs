@@ -1,6 +1,6 @@
 // MongDB 연결
 import { MongoClient } from "mongodb";
-const url = "mongodb+srv://rudqq:rudqo681@mogo.qbmj03s.mongodb.net/";
+const url = "mongodb+srv://rudqq:rudqo681@mogo.qbmj03s.mongodb.net/dbname";
 const options = { useNewUrlParser: true };
 let connectDB;
 

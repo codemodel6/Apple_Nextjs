@@ -40,3 +40,26 @@ await fetch('URL', {cache : 'force-cache'}) -> 근데 {cache : 'force-cache'} �
 
 fetch를 안하고 데이터베이스에서 데이터를 직접 가져올 경우의 캐싱
 export const revalidate = 60; -> 60초마다 캐싱 갱신
+
+# 로그인
+
+Next-auth 사용
+
+## github 연동
+
+1. 내 프로필 -> setting -> developer setting -> oauth app -> 만든 후 Generate a new client secret
+2. pages/api/auth 폴더 만든 후 [...nextauth].js 를 만든 후 지정된 코드를 넣는다
+3. 로그인 버튼을 만든다. next-auth/react 에서 import 후 onClick 시 signIn() 이라는 함수를 실행시키기만 하면 된다. signOut 은 로그아웃 버튼이다.
+4. 서버 컴포넌트에서 현재 로그인한 유저의 정보를 보려면 await getServerSession(authOptions) 함수를 사용한다 - authoOptions은 [...nextautho].js 파일 안에 있는 변수
+
+## session 방법
+
+1. npm install @next-auth/mongodb-adapter 어뎁더 다운로드
+2. [...nextautho].js 코드에 adapter : MongoDBAdapter(connectDB) 를 적는다
+3. 실행하면 하나의 DB가 생긴다 (test)
+   accoutns - 가입한 유저의 계정을 보관 -> 하나의 유저가 여러가지 계정을 가질 수 있다.
+   sessions - 현재 로그인된 유저 세션 정보가 있다. -> 이걸 이용해 악성 유저를 강제 로그아웃 시키거나 가능
+   user - 가입한 이메일이 같다면 하나만 있음 그러므로 구분을 email로 함
+4. 내가 쓰던 DB에 나오게 하고 싶다면, DB연결 코드 마지막에 DB 이름을 적는다.
+5. 서버 코드에서 session = getServerSession(req,res,authOptions) 을 사용해서 현재 유저의 정보를 가져온다
+6. body 속성에 새로운 key value로 계정의 이메일을 넣어준다.
